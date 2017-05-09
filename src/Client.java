@@ -34,7 +34,6 @@ public class Client {
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }
-        clearFile(this.compFile);
 
     }
 
@@ -52,12 +51,14 @@ public class Client {
             } catch (EOFException eofException) {
                 System.out.println("Server ended connection");
             } finally {
-                shutDown();
+
+
             }
             }
         }catch(IOException ioException){
             ioException.printStackTrace();
         }
+        clearFile(this.compFile);
     }
 
     //wait for connection, then display connaction information
@@ -79,6 +80,7 @@ public class Client {
 
     //compile code
     private void whileCompile() throws IOException{
+        clearFile(this.compFile);
         try{
             this.userCode = (String) input.readObject();
             System.out.println("Compiling code ... ");
@@ -139,10 +141,13 @@ public class Client {
 
     public void clearFile(String path) {
         try {
+
             PrintWriter outputStream = new PrintWriter(path);
-            outputStream.print("");
+            //outputStream.print("");
             outputStream.close();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
