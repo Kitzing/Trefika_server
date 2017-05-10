@@ -21,12 +21,14 @@ public class Client {
     private String userFile;
     private String compFile;
     private String errFile;
+    private int length;
 
     //constructor
     public Client(String userFile, String compFile, String errFile){
         this.userFile = userFile;
         this.compFile = compFile;
         this.errFile = errFile;
+        this.length = 0;
         try {
             out = new PrintStream(new FileOutputStream(compFile));
             err = new PrintStream(new FileOutputStream(errFile));
@@ -58,7 +60,6 @@ public class Client {
         }catch(IOException ioException){
             ioException.printStackTrace();
         }
-        clearFile(this.compFile);
     }
 
     //wait for connection, then display connaction information
@@ -80,7 +81,6 @@ public class Client {
 
     //compile code
     private void whileCompile() throws IOException{
-        clearFile(this.compFile);
         try{
             this.userCode = (String) input.readObject();
             System.out.println("Compiling code ... ");
@@ -105,7 +105,7 @@ public class Client {
 
     }
 
-
+    //calls beanshell commands to compile the code
     private void compileCode(String userCode){
         try {
             bsh.eval(userCode);
@@ -118,6 +118,7 @@ public class Client {
 
     }
 
+    //reads file
     public void readFile(String file){
         try {
             FileReader fr = new FileReader(file);
@@ -129,7 +130,8 @@ public class Client {
                 sb.append(" " + line);
                 line = reader.readLine();
             }
-            result = sb.toString();
+
+            result = clearOldData(sb).toString().trim();
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }catch(IOException e){
@@ -139,17 +141,10 @@ public class Client {
     }
 
 
-    public void clearFile(String path) {
-        try {
-
-            PrintWriter outputStream = new PrintWriter(path);
-            //outputStream.print("");
-            outputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    private StringBuilder clearOldData(StringBuilder sb) {
+        sb.delete(0, length);
+        length += sb.length();
+        return sb;
     }
 
 }
