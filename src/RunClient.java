@@ -1,5 +1,6 @@
 /**
- * Created by sarakitzing on 2017-05-08.
+ * @author Sara Kitzing
+ * Creates and runs the server
  */
 public class RunClient {
 

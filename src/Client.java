@@ -5,7 +5,10 @@ import bsh.EvalError;
 import bsh.Interpreter;
 
 /**
- * Created by sarakitzing on 2017-05-02.
+ * @author Sara Kitzing
+ * Handels everything connected with the server and compiling the code sent through the server
+ * Most of the code is gotten from a series of youtube-videos by the user
+ * "thenewboston" (https://www.youtube.com/channel/UCJbPGzawDH1njbqV-D5HqKw)
  */
 
 public class Client {
@@ -140,7 +143,7 @@ public class Client {
 
     }
 
-
+    //removes the old compiledCode-data
     private StringBuilder clearOldData(StringBuilder sb) {
         sb.delete(0, length);
         length += sb.length();
