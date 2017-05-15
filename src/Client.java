@@ -21,14 +21,12 @@ public class Client {
     private Interpreter bsh;
     private PrintStream out;
     private PrintStream err;
-    private String userFile;
     private String compFile;
     private String errFile;
     private int length;
 
     //constructor
-    public Client(String userFile, String compFile, String errFile){
-        this.userFile = userFile;
+    public Client(String compFile, String errFile){
         this.compFile = compFile;
         this.errFile = errFile;
         this.length = 0;
