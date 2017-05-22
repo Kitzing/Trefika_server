@@ -35,7 +35,7 @@ public class Client {
             err = new PrintStream(new FileOutputStream(errFile));
             bsh = new Interpreter(new StringReader(""), out, err, false );
         }catch(FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("File not found");
         }
 
     }
@@ -53,13 +53,12 @@ public class Client {
 
             } catch (EOFException eofException) {
                 System.out.println("Server ended connection");
-            } finally {
-
-
             }
+         /*   finally {
+            } */
             }
         }catch(IOException ioException){
-            ioException.printStackTrace();
+            System.out.println("Problem with input/output");
         }
     }
 
@@ -101,7 +100,7 @@ public class Client {
             input.close();
             connection.close();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Problem with shutting down the client");
         }
 
     }
@@ -134,9 +133,9 @@ public class Client {
 
             result = clearOldData(sb).toString().trim();
         }catch(FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("File not found");
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Problem with input/output");
         }
 
     }
