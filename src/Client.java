@@ -14,25 +14,20 @@ import bsh.Interpreter;
 public class Client {
     private ObjectOutputStream output;
     private ObjectInputStream input;
-    private String userCode;
     private String result;
     private ServerSocket server;
     private Socket connection;
     private Interpreter bsh;
-    private PrintStream out;
-    private PrintStream err;
     private String compFile;
-    private String errFile;
     private int length;
 
     //constructor
     public Client(String compFile, String errFile){
         this.compFile = compFile;
-        this.errFile = errFile;
         this.length = 0;
         try {
-            out = new PrintStream(new FileOutputStream(compFile));
-            err = new PrintStream(new FileOutputStream(errFile));
+            PrintStream out = new PrintStream(new FileOutputStream(compFile));
+            PrintStream err = new PrintStream(new FileOutputStream(errFile));
             bsh = new Interpreter(new StringReader(""), out, err, false );
         }catch(FileNotFoundException e){
             System.out.println("File not found");
@@ -54,8 +49,6 @@ public class Client {
             } catch (EOFException eofException) {
                 System.out.println("Server ended connection");
             }
-         /*   finally {
-            } */
             }
         }catch(IOException ioException){
             System.out.println("Problem with input/output");
@@ -82,7 +75,7 @@ public class Client {
     //compile code
     private void whileCompile() throws IOException{
         try{
-            this.userCode = (String) input.readObject();
+            String userCode = (String) input.readObject();
             System.out.println("Compiling code ... ");
             compileCode(userCode);
             output.writeObject(result);
@@ -92,8 +85,8 @@ public class Client {
         }
     }
 
-    //close the streams and sockets
-    private void shutDown(){
+    //close the streams and sockets, possible to add to the application if needed
+    public void shutDown(){
         System.out.println("Closing connections...");
         try{
             output.close();
