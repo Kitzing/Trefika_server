@@ -1,6 +1,7 @@
 /**
  * @author Sara Kitzing
- * Creates and runs the server
+ * Responsible for creating and running the server
+ * Uses Client
  */
 public class RunClient {
 

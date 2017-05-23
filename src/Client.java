@@ -6,9 +6,9 @@ import bsh.Interpreter;
 
 /**
  * @author Sara Kitzing
- * Handels everything connected with the server and compiling the code sent through the server
- * Most of the code is gotten from a series of youtube-videos by the user
- * "thenewboston" (https://www.youtube.com/channel/UCJbPGzawDH1njbqV-D5HqKw)
+ * Responsible for everything connected with the server and compiling the code sent through the server
+ * Most of the code is gotten from a series of youtube-videos by the user "thenewboston" (https://www.youtube.com/channel/UCJbPGzawDH1njbqV-D5HqKw)
+ * Used by RunClient
  */
 
 public class Client {
