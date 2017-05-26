@@ -6,8 +6,7 @@
 public class RunClient {
 
     public static void main (String[] args){
-        Client client;
-        client = new Client("compiledCode","testCode");
+        Client client = new Client("compiledCode","testCode");
         client.startRunning();
     }
 
